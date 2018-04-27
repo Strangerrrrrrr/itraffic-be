@@ -20,7 +20,8 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
-    'namespace' => 'App\Http\Controllers\Api'
+    'namespace' => 'App\Http\Controllers\Api',
+    'middleware' => 'serializer:array'
 ],function($api) {
     $api->get('version', function() {
         return response('this is version v1');
@@ -31,6 +32,8 @@ $api->version('v1', [
         'limit' => config('api.rate_limits.sign.limit'),
         'expires' => config('api.rate_limits.sign.expires'),
     ], function($api) {
+        // 游客可以访问的接口
+        
         // 用户注册
         $api->post('users', 'UsersController@store')
             ->name('api.users.store');
@@ -46,6 +49,21 @@ $api->version('v1', [
         // 删除token
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
         ->name('api.authorizations.destroy');
+
+        // 违章查询
+        $api->post('illegal/search', 'IllegalController@search')
+        ->name('api.illegal.search');
+
+        // -------------------------------
+    
+        // 需要 token 验证的接口
+        $api->group(['middleware' => 'api.auth'], function($api) {
+            // 当前登录用户信息
+            $api->get('user', 'UsersController@me')
+                ->name('api.user.show');
+            $api->patch('user', 'UsersController@update')
+                ->name('api.user.update');
+        });
     });
 });
 
