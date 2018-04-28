@@ -54,7 +54,7 @@ $api->version('v1', [
         $api->post('illegal/search', 'IllegalController@search')
         ->name('api.illegal.search');
 
-        // -------------------------------
+       
     
         // 需要 token 验证的接口
         $api->group(['middleware' => 'api.auth'], function($api) {
@@ -63,6 +63,9 @@ $api->version('v1', [
                 ->name('api.user.show');
             $api->patch('user', 'UsersController@update')
                 ->name('api.user.update');
+            // 驾驶证业务
+            $api->get('license/show','LicenseController@show')
+                ->name('api.license.show');
         });
     });
 });
