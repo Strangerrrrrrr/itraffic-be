@@ -15,7 +15,6 @@ class IllegalTransformer extends TransformerAbstract
             'location' => $illegal->location,
             'illegal_id' => $illegal->illegal_id,
             'created_at' => $illegal->created_at->toDateTimeString(),
-
         ];
     }
 }
