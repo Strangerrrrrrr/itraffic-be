@@ -66,6 +66,9 @@ $api->version('v1', [
             // 驾驶证业务
             $api->get('driverslicense/show','DriversLicenseController@show')
                 ->name('api.driversLicense.show');
+            // 行驶证业务
+            $api->get('drivinglicense/show','DrivingLicenseController@show')
+                ->name('api.drivingLicense.show');
         });
     });
 });
