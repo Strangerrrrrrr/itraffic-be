@@ -64,8 +64,8 @@ $api->version('v1', [
             $api->patch('user', 'UsersController@update')
                 ->name('api.user.update');
             // 驾驶证业务
-            $api->get('license/show','LicenseController@show')
-                ->name('api.license.show');
+            $api->get('driverslicense/show','DriversLicenseController@show')
+                ->name('api.driversLicense.show');
         });
     });
 });
