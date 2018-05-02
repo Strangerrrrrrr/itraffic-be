@@ -48,4 +48,7 @@ class User extends Authenticatable implements JWTSubject
     public function driversLicense () {
         return $this->hasOne('App\Models\DriversLicense', 'identity', 'identity');
     }
+    public function drivingLicense () {
+        return $this->hasmany('App\Models\DrivingLicense', 'identity', 'identity');
+    }
 }

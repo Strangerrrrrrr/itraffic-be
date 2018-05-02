@@ -63,12 +63,18 @@ $api->version('v1', [
                 ->name('api.user.show');
             $api->patch('user', 'UsersController@update')
                 ->name('api.user.update');
+
             // 驾驶证业务
             $api->get('driverslicense/show','DriversLicenseController@show')
                 ->name('api.driversLicense.show');
+            // 修改地址
+            $api->post('driverslicense/address', 'DriversLicenseController@address')
+                ->name('api.driverslicense.address');
+                
             // 行驶证业务
             $api->get('drivinglicense/show','DrivingLicenseController@show')
                 ->name('api.drivingLicense.show');
+
         });
     });
 });

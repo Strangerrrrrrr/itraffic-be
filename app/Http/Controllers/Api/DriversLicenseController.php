@@ -14,4 +14,13 @@ class DriversLicenseController extends Controller
         ])->first();
         return $DriversLicenseInfo;
     }
+
+    public function address(Request $request) {
+        $DriversLicenseInfo = DriversLicense::where([
+            'identity' => $this->user()->identity,
+        ])->first();
+        $DriversLicenseInfo->address = $request->address;
+        $DriversLicenseInfo->save();
+        return $DriversLicenseInfo;
+    }
 }
