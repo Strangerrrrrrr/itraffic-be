@@ -30,8 +30,8 @@ class UserRequest extends FormRequest
             'real_name' => 'required|string|max:255',
             'identity' => 'required|string|size:18|unique:users',
 
-            'captcha_key' => 'required|string',
-            'captcha_code' => 'required|string',
+            // 'captcha_key' => 'required|string',
+            // 'captcha_code' => 'required|string',
         ];
     }
 

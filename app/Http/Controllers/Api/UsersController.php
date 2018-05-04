@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function store(UserRequest $request)
     {
-        $captchaData = \Cache::get($request->captcha_key);
+        // $captchaData = \Cache::get($request->captcha_key);
 
         // if (!$captchaData) {
         //     return $this->response->error('图片验证码已失效', 422);
@@ -24,7 +24,7 @@ class UsersController extends Controller
         // }
 
         // 清除图片验证码缓存
-        \Cache::forget($request->captcha_key);
+        // \Cache::forget($request->captcha_key);
 
         $user = User::create([
             'name' => $request->name,
