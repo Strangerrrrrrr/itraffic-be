@@ -54,6 +54,10 @@ $api->version('v1', [
         $api->post('illegal/search', 'IllegalController@search')
         ->name('api.illegal.search');
 
+        // 考场地区
+        $api->post('examcenter/search', 'ExamCenterController@search')
+        ->name('api.examcenter.search');
+
        
     
         // 需要 token 验证的接口

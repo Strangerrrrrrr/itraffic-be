@@ -22,4 +22,5 @@ class DriversLicense extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public $timestamps = false;
 }
