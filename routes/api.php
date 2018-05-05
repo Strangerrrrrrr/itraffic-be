@@ -58,6 +58,10 @@ $api->version('v1', [
         $api->post('examcenter/search', 'ExamCenterController@search')
         ->name('api.examcenter.search');
 
+        // 交规宣传
+        $api->get('publicboard/show', 'PublicBoardController@show')
+        ->name('api.publicboard.show');
+
        
     
         // 需要 token 验证的接口
