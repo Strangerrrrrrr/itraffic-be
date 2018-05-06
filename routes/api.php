@@ -89,6 +89,9 @@ $api->version('v1', [
             $api->get('drivinglicense/show','DrivingLicenseController@show')
                 ->name('api.drivingLicense.show');
 
+            // 申诉
+            // $api->get('drivinglicense/show','DrivingLicenseController@show')
+                // ->name('api.drivingLicense.show');
         });
     });
 });
