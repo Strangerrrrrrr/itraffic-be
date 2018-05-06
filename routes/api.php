@@ -90,8 +90,8 @@ $api->version('v1', [
                 ->name('api.drivingLicense.show');
 
             // 申诉
-            // $api->get('drivinglicense/show','DrivingLicenseController@show')
-                // ->name('api.drivingLicense.show');
+             $api->post('complain/store','ComplainController@store')
+                ->name('api.complain.store');
         });
     });
 });
