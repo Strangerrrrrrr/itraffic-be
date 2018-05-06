@@ -57,6 +57,9 @@ $api->version('v1', [
         // 考场地区
         $api->post('examcenter/search', 'ExamCenterController@search')
         ->name('api.examcenter.search');
+        // 考试id
+        $api->post('examcenter/show', 'ExamCenterController@show')
+        ->name('api.examcenter.show');
 
         // 交规宣传
         $api->get('publicboard/show', 'PublicBoardController@show')

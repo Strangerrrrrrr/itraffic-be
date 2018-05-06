@@ -14,4 +14,5 @@ class ExamCenterController extends Controller
         ])->get();
         return $ExamCenterInfo;
     }
+   
 }

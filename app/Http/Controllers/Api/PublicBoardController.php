@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class PublicBoardController extends Controller
 {
     public function show(Request $request) {
-        $news = PublicBoard::paginate(5);
+        $news = PublicBoard::paginate(10);
         return $news;
     }
 
