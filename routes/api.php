@@ -61,6 +61,9 @@ $api->version('v1', [
         // 交规宣传
         $api->get('publicboard/show', 'PublicBoardController@show')
         ->name('api.publicboard.show');
+        // 新闻
+        $api->get('news', 'PublicBoardController@news')
+        ->name('api.publicboard.news');
 
        
     
