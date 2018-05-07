@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 class ComplainController extends Controller
 {
-    public function store(ComplainRequest $request)
+    public function store(Request $request)
     {
 
         $complain = Complain::create([
@@ -18,7 +18,7 @@ class ComplainController extends Controller
             'picture_3' => $request->picture_3
         ]);
 
-        return $this->response->created();
+        return $complain;
     }
 
 }

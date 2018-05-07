@@ -11,6 +11,10 @@ use Auth;
 
 class Complain extends Model
 {
-     protected $table = 'complain';
+    use Notifiable;
+    
+    protected $table = 'complain';
+
+    protected $guarded = [];
 
 }
