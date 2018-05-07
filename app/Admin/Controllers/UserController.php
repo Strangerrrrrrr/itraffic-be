@@ -81,13 +81,7 @@ class UserController extends Controller
             $grid->column('identity', '身份证');
             $grid->column('phone', '联系方式');
 
-            $grid->column('pass', '审核通过')->display(function ($pass) {
-                if ($pass == 0) {
-                    return '否';
-                } else {
-                    return '是';
-                }
-            });
+            $grid->column('status', '审核状态');
 
             $grid->created_at('注册时间');
             $grid->updated_at('更新时间');

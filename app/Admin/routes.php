@@ -14,4 +14,5 @@ Route::group([
     $router->resource('users', UserController::class);
     $router->resource('DriversLicense', DriversLicenseController::class);
     $router->resource('news', NewsController::class);
+    $router->resource('DrivingLicense', DrivingLicenseController::class);
 });

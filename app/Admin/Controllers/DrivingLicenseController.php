@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\PublicBoard;
+use App\models\DrivingLicense;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class NewsController extends Controller
+class DrivingLicenseController extends Controller
 {
     use ModelForm;
 
@@ -41,8 +41,8 @@ class NewsController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('行驶证信息');
+            $content->description('管理行驶证');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class NewsController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('新增用户');
+            $content->description('添加新的驾驶证信息');
 
             $content->body($this->form());
         });
@@ -71,12 +71,10 @@ class NewsController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(PublicBoard::class, function (Grid $grid) {
+        return Admin::grid(DrivingLicense::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->column('title', '新闻标题');
-            $grid->column('author', '新闻作者');
-            $grid->column('content', '新闻内容');
+
             $grid->created_at();
             $grid->updated_at();
         });
@@ -89,12 +87,9 @@ class NewsController extends Controller
      */
     protected function form()
     {
-        return Admin::form(PublicBoard::class, function (Form $form) {
+        return Admin::form(DrivingLicense::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->editor('title', '新闻标题');
-            $form->editor('author', '新闻作者');
-            $form->editor('content', '新闻内容');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
