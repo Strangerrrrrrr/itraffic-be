@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\UserRequest;
 use App\Transformers\UserTransformer;
-
 class UsersController extends Controller
 {
     public function store(UserRequest $request)
@@ -46,5 +45,17 @@ class UsersController extends Controller
     public function me()
     {
         return $this->response->item($this->user(), new UserTransformer());
+    }
+
+    public function identity (Request $request) {
+        $identity_image = $request->file('identity_image')->store('identity_image');
+        // $identity_image = 'storage/' . substr($identity_image, 7);
+
+        $user = User::find($request->user_id);
+        $user->identity_image = $identity_image;
+        $user->status = '审核中';
+        $user->save();
+
+        return $user;
     }
 }

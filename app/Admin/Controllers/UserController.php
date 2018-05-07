@@ -81,6 +81,8 @@ class UserController extends Controller
             $grid->column('identity', '身份证');
             $grid->column('phone', '联系方式');
 
+            $grid->column('identity_image', '身份证照片')->image('http://localhost:8000/uploads/', 100, 100);
+            
             $grid->column('status', '审核状态');
 
             $grid->created_at('注册时间');
@@ -111,8 +113,8 @@ class UserController extends Controller
             $form->radio('sex', '性别')->options(['男' => '男', '女'=> '女'])->default('男');
             $form->text('identity', '身份证');
             $form->text('phone', '联系方式');
-
-            $form->radio('pass', '审核通过')->options([1 => '是', 0 => '否'])->default('男');
+            $form->image('identity_image', '身份证图片');
+            $form->radio('status', '审核通过')->options(['已认证' => '是', '未认证' => '否'])->default('未认证');
 
             $form->display('created_at', '创建时间');
             $form->display('updated_at', '更新时间');

@@ -64,10 +64,14 @@ $api->version('v1', [
         ->name('api.publicboard.show');
         // 新闻
         $api->get('news', 'PublicBoardController@news')
-        ->name('api.publicboard.news');
-
-       
+        ->name('api.publicboard.news');       
     
+
+        // 上传身份证
+        $api->post('user/identity', 'UsersController@identity')
+        ->name('api.user.identity');
+
+
         // 需要 token 验证的接口
         $api->group(['middleware' => 'api.auth'], function($api) {
             // 当前登录用户信息
@@ -75,6 +79,8 @@ $api->version('v1', [
                 ->name('api.user.show');
             $api->patch('user', 'UsersController@update')
                 ->name('api.user.update');
+                
+
 
             // 驾驶证业务
             $api->get('driverslicense/show','DriversLicenseController@show')
