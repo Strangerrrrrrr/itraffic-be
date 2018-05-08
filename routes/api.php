@@ -88,18 +88,25 @@ $api->version('v1', [
             // 修改地址
             $api->post('driverslicense/address', 'DriversLicenseController@address')
                 ->name('api.driverslicense.address');
+            // 修改密码
+            $api->post('users/pass', 'UsersController@address')
+                ->name('api.users.address');
                 
             // 行驶证业务
-            $api->get('drivinglicense/show','DrivingLicenseController@show')
+            $api->post('drivinglicense/show','DrivingLicenseController@show')
                 ->name('api.drivingLicense.show');
 
             // 申诉
              $api->post('complain/store','ComplainController@store')
                 ->name('api.complain.store');
 
-            // 准考证
+            // 存储准考证
              $api->post('admission/store','AdmissionController@store')
              ->name('api.admission.store');
+
+             // 调出准考证
+             $api->get('admission/show','AdmissionController@show')
+             ->name('api.admission.show');
         });
     });
 });

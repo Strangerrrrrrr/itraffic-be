@@ -58,4 +58,13 @@ class UsersController extends Controller
 
         return $user;
     }
+
+    public function pass(Request $request) {
+        $UsersInfo = Users::where([
+            'password' => $this->user()->password,
+        ])->first();
+        $UsersInfo->password = $request->password;
+        $UsersInfo->save();
+        return $UsersInfo;
+    }
 }
