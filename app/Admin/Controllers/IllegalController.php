@@ -59,7 +59,7 @@ class IllegalController extends Controller
 
             $content->header('header');
             $content->description('description');
-
+   
             $content->body($this->form());
         });
     }
@@ -74,7 +74,12 @@ class IllegalController extends Controller
         return Admin::grid(Illegal::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-
+            $grid->column('license', '车牌号码');
+            $grid->column('engineID', '发动机号');
+            $grid->column('location', '地址');
+            $grid->column('illegal_id', '违章代码');
+            $grid->column('status', '状态');
+            $grid->column('pay_image', '付款照片')->image('http://localhost:8000/uploads/', 100, 100);
             $grid->created_at();
             $grid->updated_at();
         });
@@ -90,7 +95,13 @@ class IllegalController extends Controller
         return Admin::form(Illegal::class, function (Form $form) {
 
             $form->display('id', 'ID');
-
+            $form->text('license', '车牌号码');
+            $form->text('engineID', '发动机号');
+            $form->text('location', '地址');
+            $form->text('illegal_id', '违章代码');
+            $form->radio('status', '状态')->options(['待确认' => '待确认', '审核中'=> '审核中'])->default('待确认');
+            $form->image('pay_image', '身份证图片');
+            
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });

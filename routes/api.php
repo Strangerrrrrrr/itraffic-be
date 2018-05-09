@@ -93,7 +93,7 @@ $api->version('v1', [
                 ->name('api.users.address');
                 
             // 行驶证业务
-            $api->post('drivinglicense/show','DrivingLicenseController@show')
+            $api->get('drivinglicense/show','DrivingLicenseController@show')
                 ->name('api.drivingLicense.show');
 
             // 申诉
