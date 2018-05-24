@@ -57,4 +57,7 @@ class User extends Authenticatable implements JWTSubject
     public function admission () {
         return $this->hasOne('App\Models\Admission');
     }
+    public function change () {
+        return $this->hasOne('App\Models\Change');
+    }
 }

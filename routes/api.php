@@ -107,6 +107,10 @@ $api->version('v1', [
              // 调出准考证
              $api->get('admission/show','AdmissionController@show')
              ->name('api.admission.show');
+
+             // 预约换证
+             $api->post('change/store','ChangeController@store')
+             ->name('api.change.store');
         });
     });
 });
