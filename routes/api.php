@@ -89,8 +89,8 @@ $api->version('v1', [
             $api->post('driverslicense/address', 'DriversLicenseController@address')
                 ->name('api.driverslicense.address');
             // 修改密码
-            $api->post('users/pass', 'UsersController@address')
-                ->name('api.users.address');
+            $api->post('users/pass', 'UsersController@pass')
+                ->name('api.users.pass');
                 
             // 行驶证业务
             $api->get('drivinglicense/show','DrivingLicenseController@show')
@@ -108,9 +108,41 @@ $api->version('v1', [
              $api->get('admission/show','AdmissionController@show')
              ->name('api.admission.show');
 
-             // 预约换证
+             // 储存预约换证
              $api->post('change/store','ChangeController@store')
              ->name('api.change.store');
+
+             // 调出换证信息
+             $api->get('change/show','ChangeController@show')
+             ->name('api.change.show');
+
+             // 存储安检预约
+             $api->post('check/store','CheckController@store')
+             ->name('api.check.store');
+
+             // 储存安检基础信息
+             $api->post('check/storeBasicInfo','CheckController@storeBasicInfo')
+             ->name('api.check.store.basicinfo');
+
+             // 储存安检时间信息
+             $api->post('check/storeTimeInfo','CheckController@storeTimeInfo')
+             ->name('api.check.store.timeinfo');
+
+             // 存储安检地点
+             $api->post('check/storeSiteInfo','CheckController@storeSiteInfo')
+             ->name('api.check.store.siteinfo');
+
+             // 调出安检信息
+             $api->get('check/show','CheckController@show')
+             ->name('api.check.show');
+             
+             //调出安检信息数组
+             $api->get('check/showAll','CheckController@showAll')
+             ->name('api.check.showAll');
+
+             // 存储确认安检
+             $api->post('check/storeFinishInfo','CheckController@storeFinishInfo')
+             ->name('api.check.store.finishinfo');
         });
     });
 });

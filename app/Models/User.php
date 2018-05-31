@@ -60,4 +60,7 @@ class User extends Authenticatable implements JWTSubject
     public function change () {
         return $this->hasOne('App\Models\Change');
     }
+    public function check () {
+        return $this->hasOne('App\Models\Check');
+    }
 }

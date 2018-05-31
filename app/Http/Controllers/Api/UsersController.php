@@ -60,10 +60,8 @@ class UsersController extends Controller
     }
 
     public function pass(Request $request) {
-        $UsersInfo = Users::where([
-            'password' => $this->user()->password,
-        ])->first();
-        $UsersInfo->password = $request->password;
+        $UsersInfo = User::find($this->user()->id);
+        $UsersInfo->password = bcrypt($request->password);
         $UsersInfo->save();
         return $UsersInfo;
     }
