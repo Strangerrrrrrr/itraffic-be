@@ -42,8 +42,8 @@ class DriversLicenseController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('编辑用户信息');
-            $content->description('编辑用户信息');
+            $content->header('编辑驾驶证信息');
+            $content->description('编辑驾驶证信息');
 
             $content->body($this->form()->edit($id));
         });
@@ -58,7 +58,7 @@ class DriversLicenseController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('新增用户');
+            $content->header('新增驾驶证');
             $content->description('添加新的驾驶证信息');
 
             $content->body($this->form());
@@ -75,7 +75,7 @@ class DriversLicenseController extends Controller
         return Admin::grid(DriversLicense::class, function (Grid $grid) {
             $grid->paginate(20);
 
-            //$grid->id('ID')->sortable();
+            $grid->id('ID')->sortable();
             $grid->column('identity', '身份证号');
             $grid->column('real_name', '真实姓名');
             $grid->column('vehicle_type', '驾驶证类型');
@@ -103,7 +103,8 @@ class DriversLicenseController extends Controller
     protected function form()
     {
         return Admin::form(DriversLicense::class, function (Form $form) {
-            //$form->display('id', 'ID');
+            $form->display('id', 'ID');
+            // $form->display('identity', '身份证号');
             $form->text('identity', '身份证号');
             $form->text('real_name', '真实姓名');
             $form->radio('vehicle_type', '驾驶证类型')->options(['A1' => 'A1', 'A2'=> 'A2','A3'=> 'A3','B1'=> 'B1','B2'=> 'B2','C1'=> 'C1','C2'=> 'C2','C3'=> 'C3','C4'=> 'C4'])->default('C1');

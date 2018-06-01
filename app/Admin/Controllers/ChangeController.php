@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Illegal;
+use App\Models\Change;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class IllegalController extends Controller
+class ChangeController extends Controller
 {
     use ModelForm;
 
@@ -24,8 +24,8 @@ class IllegalController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('违章信息管理');
-            $content->description('管理违章信息');
+            $content->header('预约换证管理');
+            $content->description('管理预约换证');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class IllegalController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('编辑换证信息');
+            $content->description('编辑换证信息');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,9 +57,9 @@ class IllegalController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
-   
+            $content->header('新增预约信息');
+            $content->description('新增预约信息');
+
             $content->body($this->form());
         });
     }
@@ -71,15 +71,13 @@ class IllegalController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Illegal::class, function (Grid $grid) {
+        return Admin::grid(Change::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->column('license', '车牌号码');
-            $grid->column('engineID', '发动机号');
-            $grid->column('location', '地址');
-            $grid->column('illegal_id', '违章代码');
-            $grid->column('status', '状态');
-            $grid->column('pay_image', '付款照片')->image('http://localhost:8000/uploads/', 100, 100);
+            $grid->column('name', '姓名');
+            $grid->column('identity', '身份证');
+            $grid->column('vehicle_type', '准驾车型');
+            $grid->column('phone', '联系方式');
             $grid->created_at();
             $grid->updated_at();
         });
@@ -92,15 +90,13 @@ class IllegalController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Illegal::class, function (Form $form) {
+        return Admin::form(Change::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->text('license', '车牌号码');
-            $form->text('engineID', '发动机号');
-            $form->text('location', '地址');
-            $form->text('illegal_id', '违章代码');
-            $form->radio('status', '状态')->options(['待确认' => '待确认', '待付款'=> '待付款','已处理'=> '已处理'])->default('待确认');
-            $form->image('pay_image', '身份证图片');
+            $form->text('name', '姓名');
+            $form->text('identity', '身份证');
+            $form->text('vehicle_type', '准驾车型');
+            $form->text('phone', '联系方式');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });

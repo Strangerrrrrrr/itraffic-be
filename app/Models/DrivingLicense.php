@@ -15,9 +15,6 @@ class DrivingLicense extends Model
     //
     protected $table = 'driving_license';
 
-    protected $primaryKey = 'identity';
-    protected $keyType = 'string';
-
     public function user () {
         return $this->belongsTo('App\Models\User');
     }

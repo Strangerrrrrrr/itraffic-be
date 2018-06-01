@@ -53,6 +53,9 @@ $api->version('v1', [
         // 违章查询
         $api->post('illegal/search', 'IllegalController@search')
         ->name('api.illegal.search');
+        // 违章付款
+        $api->get('illegal/pay', 'IllegalController@pay')
+        ->name('api.illegal.pay');
 
         // 考场地区
         $api->post('examcenter/search', 'ExamCenterController@search')
@@ -71,6 +74,13 @@ $api->version('v1', [
         $api->post('user/identity', 'UsersController@identity')
         ->name('api.user.identity');
 
+        // 申诉
+        $api->post('complain/store','ComplainController@store')
+        ->name('api.complain.store');
+        $api->get('complain/show','ComplainController@show')
+        ->name('api.complain.show');
+        $api->delete('complain/{id}','ComplainController@destroy')
+        ->name('api.complain.destroy');
 
         // 需要 token 验证的接口
         $api->group(['middleware' => 'api.auth'], function($api) {
@@ -85,6 +95,9 @@ $api->version('v1', [
             // 驾驶证业务
             $api->get('driverslicense/show','DriversLicenseController@show')
                 ->name('api.driversLicense.show');
+            // 扣分
+            $api->get('driverslicense/deduct','DriversLicenseController@deduct')
+                ->name('api.driversLicense.deduct');
             // 修改地址
             $api->post('driverslicense/address', 'DriversLicenseController@address')
                 ->name('api.driverslicense.address');
@@ -96,9 +109,7 @@ $api->version('v1', [
             $api->get('drivinglicense/show','DrivingLicenseController@show')
                 ->name('api.drivingLicense.show');
 
-            // 申诉
-             $api->post('complain/store','ComplainController@store')
-                ->name('api.complain.store');
+            
 
             // 存储准考证
              $api->post('admission/store','AdmissionController@store')

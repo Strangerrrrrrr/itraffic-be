@@ -24,8 +24,8 @@ class DrivingLicenseController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('行驶证管理');
+            $content->description('管理行驶证信息');
 
             $content->body($this->grid());
         });
@@ -74,9 +74,13 @@ class DrivingLicenseController extends Controller
         return Admin::grid(DrivingLicense::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->column('real_name', '真实姓名');
+            $grid->column('identity', '身份证号');
+            $grid->column('license', '车牌');
+            $grid->column('engineID', '发动机号');
+            $grid->column('vin', '车架号');
+            $grid->column('register_time', '申请时间');
+            $grid->column('safe_check', '安检情况');
         });
     }
 
@@ -90,9 +94,13 @@ class DrivingLicenseController extends Controller
         return Admin::form(DrivingLicense::class, function (Form $form) {
 
             $form->display('id', 'ID');
-
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+            $form->text('real_name', '真实姓名');
+            $form->text('identity', '身份证号');
+            $form->text('license', '车牌');
+            $form->text('engineID', '发动机号');
+            $form->text('vin', '车架号');
+            $form->date('register_time', '申请时间');
+            $form->radio('safe_check', '安检情况')->options(['1' => '是', '0'=> '否']);
         });
     }
 }

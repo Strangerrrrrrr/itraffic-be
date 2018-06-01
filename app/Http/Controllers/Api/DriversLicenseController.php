@@ -23,4 +23,13 @@ class DriversLicenseController extends Controller
         $DriversLicenseInfo->save();
         return $DriversLicenseInfo;
     }
+
+    public function deduct(Request $request) {
+        $DriversLicenseInfo = DriversLicense::where([
+            'identity' => $this->user()->identity,
+        ])->first();
+        $DriversLicenseInfo->grade = $DriversLicenseInfo->grade - $request->grade;
+        $DriversLicenseInfo->save();
+        return $DriversLicenseInfo;
+    }
 }

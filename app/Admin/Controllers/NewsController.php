@@ -24,8 +24,8 @@ class NewsController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('交规管理');
+            $content->description('管理交规宣传栏');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class NewsController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('修改新闻');
+            $content->description('修改新闻');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class NewsController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('新增新闻');
+            $content->description('新增新闻');
 
             $content->body($this->form());
         });
@@ -92,8 +92,8 @@ class NewsController extends Controller
         return Admin::form(PublicBoard::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->editor('title', '新闻标题');
-            $form->editor('author', '新闻作者');
+            $form->text('title', '新闻标题');
+            $form->text('author', '新闻作者');
             $form->editor('content', '新闻内容');
 
             $form->display('created_at', 'Created At');

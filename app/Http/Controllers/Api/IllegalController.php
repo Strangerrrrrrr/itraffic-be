@@ -20,4 +20,13 @@ class IllegalController extends Controller
         // $illegalInfo = Illegal::find(1)->illegalCode;
         // return $illegalInfo;
     }
+    
+    public function pay(Request $request) {
+        $illegalInfo = Illegal::where([
+            'id' => $request->id,
+        ])->first();
+        $illegalInfo->status = '待付款';
+        $illegalInfo->save();
+        return $illegalInfo;
+    }
 }
