@@ -19,4 +19,5 @@ Route::group([
     $router->resource('Admission', AdmissionController::class);
     $router->resource('Change', ChangeController::class);
     $router->resource('Check', CheckController::class);
+    $router->resource('Complain', ComplainController::class);
 });

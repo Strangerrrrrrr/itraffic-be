@@ -82,6 +82,7 @@ class DriversLicenseController extends Controller
             $grid->column('grade', '剩余分数');
             $grid->column('created_at', '领证时间');
             $grid->column('effective_time', '有效时间');
+            $grid->column('created_at', '领证时间');
             $grid->column('updated_at', '更新时间');
             $grid->column('address', '家庭住址');
 
@@ -110,6 +111,7 @@ class DriversLicenseController extends Controller
             $form->radio('vehicle_type', '驾驶证类型')->options(['A1' => 'A1', 'A2'=> 'A2','A3'=> 'A3','B1'=> 'B1','B2'=> 'B2','C1'=> 'C1','C2'=> 'C2','C3'=> 'C3','C4'=> 'C4'])->default('C1');
             $form->text('grade', '剩余分数');
             $form->text('effective_time', '有效时间');
+            $form->date('updated_at', '更新时间');
             $form->text('address', '家庭住址');
 
         });

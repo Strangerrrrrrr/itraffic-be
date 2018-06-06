@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Change;
+use App\Models\Complain;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class ChangeController extends Controller
+class ComplainController extends Controller
 {
     use ModelForm;
 
@@ -24,8 +24,8 @@ class ChangeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('预约换证管理');
-            $content->description('管理预约换证');
+            $content->header('用户申诉管理');
+            $content->description('管理用户申诉');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class ChangeController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('编辑换证信息');
-            $content->description('编辑换证信息');
+            $content->header('编辑');
+            $content->description('编辑');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class ChangeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('新增预约信息');
-            $content->description('新增预约信息');
+            $content->header('header');
+            $content->description('description');
 
             $content->body($this->form());
         });
@@ -71,19 +71,15 @@ class ChangeController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Change::class, function (Grid $grid) {
-
+        return Admin::grid(Complain::class, function (Grid $grid) {
+            $grid->paginate(20);
             $grid->id('ID')->sortable();
-            $grid->column('name', '姓名');
-            $grid->column('identity', '身份证');
-            $grid->column('vehicle_type', '准驾车型');
-            $grid->column('phone', '联系方式');
-            $grid->created_at();
+            $grid->column('illegal_info_id', '违章信息ID');
+            $grid->column('content', '内容');
+            $grid->column('picture_1', '认证照片')->image('http://localhost:8000/uploads/', 100, 100);
+            $grid->column('status', '状态');
+            $grid->column('response', '回复内容');
             $grid->updated_at();
-            $grid->filter(function ($filter) {
-                $filter->like('name', '姓名');
-
-            });
         });
     }
 
@@ -94,13 +90,16 @@ class ChangeController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Change::class, function (Form $form) {
+        return Admin::form(Complain::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->text('name', '姓名');
-            $form->text('identity', '身份证');
-            $form->text('vehicle_type', '准驾车型');
-            $form->text('phone', '联系方式');
+            $form->radio('status', '状态')->options([
+                '申诉中' => '申诉中', 
+                '申诉失败'=> '申诉失败' ,
+                '申诉成功'=> '申诉成功',
+                '未申诉'=> '未申诉',
+            ]);
+            $form->editor('response', '回复内容');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });

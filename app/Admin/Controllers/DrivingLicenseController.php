@@ -81,6 +81,9 @@ class DrivingLicenseController extends Controller
             $grid->column('vin', '车架号');
             $grid->column('register_time', '申请时间');
             $grid->column('safe_check', '安检情况');
+            $grid->filter(function ($filter) {
+                $filter->like('real_name', '真实姓名');
+            });
         });
     }
 

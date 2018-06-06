@@ -91,6 +91,13 @@ class UserController extends Controller
             // filter($callback)方法用来设置表格的简单搜索框
             $grid->filter(function ($filter) {
                 $filter->like('name', '用户名');
+                // $filter->like('status', '审核状态');
+                $filter->equal('status')->radio([
+                    '未认证'   => '未认证',
+                    '审核中'   => '审核中',
+                    '已认证'   => '已认证',
+                ]);
+                $filter->like('real_name', '真实姓名');
                 // 设置created_at字段的范围查询
                 // $filter->between('created_at', 'Created Time')->datetime();
             });

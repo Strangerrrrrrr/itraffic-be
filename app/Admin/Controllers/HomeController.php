@@ -15,8 +15,8 @@ class HomeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('Dashboard');
-            $content->description('依赖环境');
+            $content->header('itraffic');
+            $content->description('欢迎来到交通违章一站式处理系统');
 
             // $content->row(Dashboard::title());
 
